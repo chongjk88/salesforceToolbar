@@ -1361,6 +1361,14 @@ function programVariables() {
 			'right' : 0,
 			'top' : '-27px',
 		});
+		
+		
+		if ($('.sidebarCell, #sidebarDiv').width() > 100) {
+			$('#uiBox').css({
+				'width' : '86.5%',
+				'left' : '240px',
+			});
+		}
 	});
 
   if (window.location.hostname === 'cdk.my.salesforce.com') {
