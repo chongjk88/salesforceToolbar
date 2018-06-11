@@ -10,7 +10,7 @@
 // @resource fontAwe https://use.fontawesome.com/3953f47d82.js
 // @resource googFont https://fonts.googleapis.com/css?family=Raleway:600,900
 // @resource jqueryUI https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css
-// @require https://raw.githubusercontent.com/chongjk88/salesforceToolbar/v4.8.3-pre-release/launchToolbar/js/launchToolbar.js
+// @require https://raw.githubusercontent.com/chongjk88/salesforceToolbar/v4.8.3-pre-release-final/launchToolbar/js/launchToolbar.js
 // @author cire
 // @grant unsafeWindow
 // @grant GM_setClipboard
