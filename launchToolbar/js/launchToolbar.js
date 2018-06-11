@@ -1,4 +1,4 @@
-/* global jQuery, window, setTimeout, GM_setClipboard, GM_openInTab, GM_setValue, GM_getValue, GM_info, setInterval, clearInterval, document, GM_getResourceURL, GM_listValues, unsafeWindow */
+/* global jQuery, $, window, setTimeout, GM_setClipboard, GM_openInTab, GM_setValue, GM_getValue, GM_info, setInterval, clearInterval, document, GM_getResourceURL, GM_listValues, unsafeWindow */
 
 // Tampermonkey functions
 
@@ -69,8 +69,8 @@ function programVariables() {
       launchToolbar.config = {
         '$placeholder': jQuery('<div>')
           .css({
-            'height': '50px',
-            'display': 'none',
+//            'height': '0',
+//            'display': 'none',
           })
           .attr({
             'id': 'ph',
@@ -80,20 +80,23 @@ function programVariables() {
             'id': 'uiBox',
           })
           .css({
-            'position': 'fixed',
+            'position': 'absolute',
             'display': 'none',
             'z-index': '9999',
-            'background': 'linear-gradient(to bottom, rgb(192, 229, 248), #F6F6F6)',
+//            'background': 'linear-gradient(to bottom, rgb(192, 229, 248), #F6F6F6)',
+            'background': '#ffffff',
             'color': '#000',
             'text-align': 'center',
             'font-size': '11px',
-            'width': '99%',
+            'width': '98.5%',
             'font-weight': '700',
             '-moz-border-radius': '0',
             'border-radius': '0',
             'border': '0 #000 solid',
             'padding': '7px 0px',
             'font-family': '"Century Gothic", sans-serif',
+            'top': '115px',
+            'left': '10px',
           }),
         '$settingContainer': jQuery('<div>')
           .css({
@@ -214,7 +217,7 @@ function programVariables() {
           .css({
             'color': 'rgb(219, 112, 147)',
           })
-          .html('<div class="myTitle">Webnum</div>'),
+          .html('<div class="myTitle">Webnum</div>cdk-'),
         '$proofDate': jQuery('<div>')
           .attr({
             'title': 'Proof Date',
@@ -886,12 +889,12 @@ function programVariables() {
         .append(
           `.funcButtons {
             display: none;
-            padding: 0px 15px;
+            padding: 0px 10px;
             <!--border-right: 1px rgb(0, 0, 0) solid;-->
             padding-top: 0px; }`
         )
         .append('.click-able { cursor: pointer; } ')
-        .append('.myTitle { color: #000000; font-weight: 900; } ')
+        .append('.myTitle { color: #000000; font-weight: 900; font-size: 10px; padding: 0 10px;} ')
         .append(
           `.myClass {
             line-height: 30px !important;
@@ -1014,10 +1017,11 @@ function programVariables() {
     'buildMainTool': function () {
       launchToolbar.config.$uiBox
         .append(launchToolbar.config.$toggleOn)
-        .append(launchToolbar.config.$webIDtext)
-        .append(launchToolbar.config.$accountName)
+			
         .append(launchToolbar.config.$launchID)
         .append(launchToolbar.config.$copyWebID)
+//        .append(launchToolbar.config.$webIDtext)
+        .append(launchToolbar.config.$accountName)
         .append(launchToolbar.config.$webnum)
         .append(launchToolbar.config.$proofDate)
         .append(launchToolbar.config.$launchDate)
@@ -1104,8 +1108,8 @@ function programVariables() {
         $funcButts.toggle();
         self.nextGenHideProof();
 
-        launchToolbar.config.$placeholder.slideToggle('slow');
-        launchToolbar.config.$uiBox.slideToggle('slow', function () {
+        launchToolbar.config.$placeholder.slideToggle('fast');
+        launchToolbar.config.$uiBox.slideToggle('fast', function () {
           if (jQuery(this)
             .is(':visible')) {
             jQuery(this)
@@ -1117,7 +1121,7 @@ function programVariables() {
 
         // set up advanced options
         self.programData();
-      }, 1000);
+      }, 0);
     },
     // ----------------------------------------
     // TIER 2
@@ -1146,7 +1150,7 @@ function programVariables() {
           this.copyInfo(this.webIDtext);
           break;
         case classText.indexOf('Webnum') > -1:
-          this.copyInfo(this.webnum);
+          this.copyInfo('cdk-' + this.webnum);
           break;
         case classText.indexOf('accountNum') > -1:
           this.copyInfo(this.accountNum);
@@ -1329,6 +1333,35 @@ function programVariables() {
       }, 1000); // set interval end
     },
   };
+	
+	//jQuery -Jun
+	$(document).ready(function () {
+		$(window).scroll(function (event) {
+			if ($(window).scrollTop() > 115)
+				$('#uiBox').css({
+					'position' : 'fixed',
+					'top' : 'auto',
+//					'width' : '99%',
+//					'left' : 0
+				});
+			else
+				$('#uiBox').css({
+					'position' : 'absolute',
+					'top' : '115px',
+//					'width' : '98.5%',
+//					'left' : '10px'
+				});
+		});
+		
+		$('.myTitle').parent().css({
+			'font-size' : '14px'
+		});
+		$('.ptBody > .links').css({
+			'position' : 'absolute',
+			'right' : 0,
+			'top' : '-27px',
+		});
+	});
 
   if (window.location.hostname === 'cdk.my.salesforce.com') {
     launchToolbar.init();
